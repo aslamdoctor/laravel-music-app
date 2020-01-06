@@ -1,0 +1,53 @@
+Artist
+------------
+name
+description
+
+
+Genre
+------------
+name
+description
+
+
+Album
+------------
+name
+release_date
+
+has many songs
+
+
+Song
+-------------
+name
+album_id
+
+belongs to album
+has many artists
+has many genre
+
+
+
+------------------------
+php artisan make:model Artist --migration
+php artisan make:factory ArtistFactory --model=Artist
+php artisan make:controller ArtistsController --resource
+
+tinker:
+factory(App\Artist::class, 10)->create();
+
+php artisan make:request StoreArtist
+php artisan make:request UpdateArtist
+
+-------------------------
+
+For Unique Validation:
+'name' => 'required|max:200|unique:artists,name,'.$this->route('artist'),
+
+-------------------------
+
+For Foreign Key inside Migration:
+$table->bigInteger('album_id')->unsigned();
+$table->foreign('album_id')->references('id')->on('albums');
+
