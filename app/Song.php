@@ -11,10 +11,10 @@ class Song extends Model
     }
 
     public function artists(){
-        return $this->belongsToMany('App\Artist');
+        return $this->belongsToMany('App\Artist', 'song_artists');
     }
 
     public function genre(){
-        return $this->belongsToMany('App\Genre');
+        return $this->belongsToMany('App\Genre', 'song_genre');
     }
 }

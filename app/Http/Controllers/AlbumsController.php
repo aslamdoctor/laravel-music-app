@@ -37,6 +37,7 @@ class AlbumsController extends Controller
     public function show($id)
     {
         $album = Album::findOrFail($id);
+        $album->load('songs');
         return view('albums.show', [
             'album' => $album
         ]);
